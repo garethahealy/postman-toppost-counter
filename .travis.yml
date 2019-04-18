@@ -1,0 +1,15 @@
+sudo: required
+dist: trusty
+language: java
+jdk:
+- oraclejdk8
+install:
+- mvn -N io.takari:maven:wrapper -Dmaven=3.5.0
+- java -version && javac -version && ./mvnw -version -B
+before_script:
+- ./mvnw dependency:go-offline -B
+script:
+- ./mvnw clean install -B
+cache:
+  directories:
+  - "$HOME/.m2"
